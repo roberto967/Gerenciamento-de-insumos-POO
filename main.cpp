@@ -45,7 +45,7 @@ int main() {
 
 			case 1:
 				t->cadastraInsumosMS();
-				break;
+				break;//break do primeiro switch case// case 1;
 
 			case 2:
 				do{
@@ -83,31 +83,40 @@ int main() {
 					}
 
 				}while (true);
-				break;
+				break;//break do primeiro switch case// case 2;
+				
 			case 3: 
       // terminando a distribuição
-      do// impede opções invalidas
-					{
-						 // vai mostrar os locais para onde pode distribuir e faz a leitura
-            Menu::exibeMenuDistribuicao();
-						cin >> opcaoLoc;
-            system("clear");
-					}while (opcaoLoc < 0 || opcaoLoc > 28);
+			do{
+      	do// impede opções invalidas
+				{
+					// vai mostrar os locais para onde pode distribuir e faz a leitura
+          Menu::exibeMenuDistribuicao();
+					cin >> opcaoLoc;
+          //system("clear");
+				}while (opcaoLoc < 0 || opcaoLoc > 28 || opcaoLoc == 1);
           
-          // para manter o padrão de sair faz com que pra sair o usuario digite 0;
-					if(opcaoLoc >= 0) { opcaoLoc--; } 
+        // para manter o padrão de sair faz com que pra sair o usuario digite 0;
+				if(opcaoLoc >= 0) { opcaoLoc--; }
 
-          // faz o loop parar e retorna ao menu 	
-          if (opcaoLoc == -1) { break;} 
-				// t->distribuirInsumo()
+				cout << "Opcao loc = " <<  opcaoLoc << endl;
+        // faz o loop parar e retorna ao menu 	
+        if (opcaoLoc == -1) { break;}
+
+				cout << "Insumos disponiveis para transferencia: " << endl;
+
+				t->consultaInsumos(t->getLocais(0));
+				
+				t->distribuirInsumo(opcaoLoc, t->getLocais(0).getInsumo()[0]);
         
+				break;//break do primeiro switch case// case 3;
+
+				default:
+					cout << "Opção inválida." << endl;
 				break;
 
-			default:
-				cout << "Opção inválida." << endl;
-				break;
-		}
-
+			}while(true);
+		}	
 	} while (opcao != 0);
 
 	return 0;

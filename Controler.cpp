@@ -80,6 +80,7 @@ void Controler::cadastraInsumosMS()
     string _valorUnitario;
     string _dtVencimento;
     string _nomeFabricante;
+    int _codLote;
 
     //vai cadastrar os campos comuns a todos os insumos.
     cout << "NOME: ";
@@ -98,7 +99,10 @@ void Controler::cadastraInsumosMS()
     cout << "FABRICANTE: ";
     getline(cin, _nomeFabricante);
 
-    locais[0].pushInsumo(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo);
+    cout << "CÓD. DO LOTE: ";
+    cin >> _codLote;
+
+    locais[0].pushInsumo(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote);
     
     system("clear");
     cout << "Cadastro realizado com sucesso!" << endl;
@@ -126,7 +130,7 @@ void Controler::consultaInsumos(Local loc)
       {
         cout << toupper(consultaInsumos(loc, 1)[i]->getNome()[j], loca);
       }
-      cout << "\n";
+      cout << "                    | INDICE: " << i << endl;
       cout << "VALOR UNITÁRIO: " << consultaInsumos(loc, 1)[i]->getValorUnitario() << endl;
       cout << "QUANTIDADE: " << consultaInsumos(loc, 1)[i]->getQuantidade() << endl;
       cout << "VALIDADE: " << consultaInsumos(loc, 1)[i]->getDtVencimento() << endl;
@@ -144,7 +148,7 @@ void Controler::consultaInsumos(Local loc)
       {
         cout << toupper(consultaInsumos(loc, 2)[i]->getNome()[j], loca);
       }
-      cout << "\n";
+      cout << "                    | INDICE: " << i << endl;
       cout << "VALOR UNITÁRIO: " << consultaInsumos(loc, 2)[i]->getValorUnitario() << endl;
       cout << "QUANTIDADE: " << consultaInsumos(loc, 2)[i]->getQuantidade() << endl;
       cout << "VALIDADE: " << consultaInsumos(loc, 2)[i]->getDtVencimento() << endl;
@@ -162,7 +166,7 @@ void Controler::consultaInsumos(Local loc)
       {
         cout << toupper(consultaInsumos(loc, 3)[i]->getNome()[j], loca);
       }
-      cout << "\n";
+      cout << "                    | INDICE: " << i << endl;
       cout << "VALOR UNITÁRIO: " << consultaInsumos(loc, 3)[i]->getValorUnitario() << endl;
       cout << "QUANTIDADE: " << consultaInsumos(loc, 3)[i]->getQuantidade() << endl;
       cout << "VALIDADE: " << consultaInsumos(loc, 3)[i]->getDtVencimento() << endl;
@@ -258,8 +262,34 @@ vector<shared_ptr<Insumos>> Controler::consultaInsumos(Local loc, int tipoInsumo
   return vetorInsumoEspe;
 }
 
-void Controler::distribuirInsumo(Local dest, Insumos insumo)
-{
+void Controler::distribuirInsumo(int dest, shared_ptr<Insumos> insumo)
+{ 
+  int qtd;
+  int id; // vai guardar a localização do insumo no array do MS;
+  
+  for(int i = 0; i < locais[0].getInsumo().size(); i++)
+  {
+    if(locais[0].getInsumo()[i] == insumo)
+    {
+      id = i;
+      cout << "SAO IGUAIS!!" << endl;
+      break;
+    }
+  }
+
+  cout << "Insira a quantidade a ser transferida: ";
+  cin >> qtd;
+  insumo->setQuantidade(qtd);
+
+  locais[dest].pushInsumo(insumo);
+
+  /*
+  for(int i = 0; i < locais[0].getInsumo().size(); i++)
+  {
+    if(locais[0].getInsumo()[i] == insumo)
+    {
+      cout << "SAO IGUAIS!!" << endl;
+    }
+  }*/
 
 }
-

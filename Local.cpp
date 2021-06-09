@@ -36,12 +36,12 @@ int Local::getTipo()
   return tipo;
 }
 
-void Local::pushInsumo(string _nome, int _quantidade, string _valorUnitario, string _dtVencimento, string _nomeFabricante, int _tipoInsumo)
+void Local::pushInsumo(string _nome, int _quantidade, string _valorUnitario, string _dtVencimento, string _nomeFabricante, int _tipoInsumo, int _codLote)
 { 
   switch (_tipoInsumo)
   {
     case 1:
-      Insumo.emplace_back(new Vacina(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo));
+      Insumo.emplace_back(new Vacina(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote));
       break;
     case 2:
       Insumo.emplace_back(new Medicamento(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo));
@@ -53,6 +53,11 @@ void Local::pushInsumo(string _nome, int _quantidade, string _valorUnitario, str
       break;
   }
   Insumo[Insumo.size()-1]->cadastroInsumo();
+}
+
+void Local::pushInsumo(shared_ptr<Insumos> _insumo)
+{
+  Insumo.emplace_back(_insumo);
 }
 
 vector<shared_ptr<Insumos>> Local::getInsumo()

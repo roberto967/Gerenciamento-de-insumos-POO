@@ -15,10 +15,11 @@ class Insumos
     std::string valorUnitario;
     std::string dtVencimento;
     std::string nomeFabricante;
-    int tipoInsumo;        
+    int tipoInsumo;
+    int codLote;        
   public:
     Insumos();
-    Insumos(std::string _nome, int _quantidade, std::string _valorUnitario, std::string _dtVencimento, std::string _nomeFabricante, int _tipoInsumo);
+    Insumos(std::string _nome, int _quantidade, std::string _valorUnitario, std::string _dtVencimento, std::string _nomeFabricante, int _tipoInsumo, int _codLote);
     ~Insumos();
 
     //metodo virtual para ser sobrescrito pela subclasse

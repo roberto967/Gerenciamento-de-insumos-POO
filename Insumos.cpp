@@ -7,7 +7,7 @@ Insumos::Insumos()
 }
 
 //construtor para evitar a repetição de codigo.
-Insumos::Insumos(string _nome, int _quantidade, string _valorUnitario, string _dtVencimento, string _nomeFabricante, int _tipoInsumo)
+Insumos::Insumos(string _nome, int _quantidade, string _valorUnitario, string _dtVencimento, string _nomeFabricante, int _tipoInsumo, int _codLote)
 {
   nome = _nome;
   quantidade = _quantidade;
@@ -15,6 +15,7 @@ Insumos::Insumos(string _nome, int _quantidade, string _valorUnitario, string _d
   dtVencimento = _dtVencimento;
   nomeFabricante = _nomeFabricante;
   tipoInsumo = _tipoInsumo;
+  codLote = _codLote;
 }
 
 Insumos::~Insumos()
