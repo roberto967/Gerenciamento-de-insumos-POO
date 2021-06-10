@@ -44,10 +44,10 @@ void Local::pushInsumo(string _nome, int _quantidade, string _valorUnitario, str
       Insumo.emplace_back(new Vacina(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote));
       break;
     case 2:
-      Insumo.emplace_back(new Medicamento(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo));
+      Insumo.emplace_back(new Medicamento(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote));
     break;
     case 3:
-      Insumo.emplace_back(new EPI(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo));
+      Insumo.emplace_back(new EPI(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote));
     break;
     default:
       break;
@@ -57,7 +57,8 @@ void Local::pushInsumo(string _nome, int _quantidade, string _valorUnitario, str
 
 void Local::pushInsumo(shared_ptr<Insumos> _insumo)
 {
-  Insumo.emplace_back(_insumo);
+  Insumo.emplace_back(make_shared<Insumos>(*_insumo));
+  //Insumo.emplace_back(_insumo);
 }
 
 vector<shared_ptr<Insumos>> Local::getInsumo()

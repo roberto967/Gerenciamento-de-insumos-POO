@@ -40,6 +40,7 @@ class Insumos
     std::string getDtVencimento();
     std::string getNomeFabricante();
     int getTipoInsumo();
+    int getCodLote();
 };
 
 #endif

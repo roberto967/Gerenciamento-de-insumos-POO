@@ -89,3 +89,8 @@ int Insumos::getTipoInsumo()
 {
   return tipoInsumo;
 }
+
+int Insumos::getCodLote()
+{
+  return codLote;
+}

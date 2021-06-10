@@ -49,6 +49,7 @@ Local Controler::getLocais(int n)
 //Tá pronta
 void Controler::cadastraInsumosMS()
 {  
+  bool verificador = false;
   //variaveis de cadastro comuns a todos os insumos
   int _tipoInsumo;
   do
@@ -89,7 +90,7 @@ void Controler::cadastraInsumosMS()
     cout << "QUANTIDADE: ";
     cin >> _quantidade;
       
-    cout << "VALOR UNITÁRIO: R$";
+    cout << "VALOR UNITÁRIO: R$ ";
     cin >> _valorUnitario;
     cin.ignore();
 
@@ -99,9 +100,27 @@ void Controler::cadastraInsumosMS()
     cout << "FABRICANTE: ";
     getline(cin, _nomeFabricante);
 
-    cout << "CÓD. DO LOTE: ";
-    cin >> _codLote;
+    //faz o cadastro do codigo do lote e evita que existam 2 lotes com numerações iguais
+    do{
+      cout << "CÓD. DO LOTE: ";
+      cin >> _codLote;
 
+      for (int i = 0; i < locais[0].getInsumo().size(); i++)
+      {
+        if (_codLote == locais[0].getInsumo()[i]->getCodLote())
+        {
+          verificador = true;
+          cout << "CODIGO DE LOTE JÁ CADASTRADO, TENTE NOVAMENTE." << endl;
+          break;
+        }
+        if(i == locais[0].getInsumo().size()-1)
+        {
+          verificador = false;
+        }
+      }
+    }while(verificador == true);
+  	
+    //cadastra de fato o insumo
     locais[0].pushInsumo(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote);
     
     system("clear");
@@ -264,8 +283,10 @@ vector<shared_ptr<Insumos>> Controler::consultaInsumos(Local loc, int tipoInsumo
 
 void Controler::distribuirInsumo(int dest, shared_ptr<Insumos> insumo)
 { 
-  int qtd;
+  int qtd, qtdAtual, newQtd;
   int id; // vai guardar a localização do insumo no array do MS;
+
+  shared_ptr<Insumos> _insumo = make_shared<Insumos>(*insumo); //faz uma copia do insumo para editar
   
   for(int i = 0; i < locais[0].getInsumo().size(); i++)
   {
@@ -277,19 +298,20 @@ void Controler::distribuirInsumo(int dest, shared_ptr<Insumos> insumo)
     }
   }
 
+  
   cout << "Insira a quantidade a ser transferida: ";
+  cin.ignore();
   cin >> qtd;
-  insumo->setQuantidade(qtd);
+  _insumo->setQuantidade(qtd);
+  
+  qtdAtual = locais[0].getInsumo()[id]->getQuantidade();
 
-  locais[dest].pushInsumo(insumo);
+  //cout << "ATUAL: " << locais[0].getInsumo()[id]->getQuantidade() << endl;
+  newQtd = qtdAtual-qtd;
 
-  /*
-  for(int i = 0; i < locais[0].getInsumo().size(); i++)
-  {
-    if(locais[0].getInsumo()[i] == insumo)
-    {
-      cout << "SAO IGUAIS!!" << endl;
-    }
-  }*/
+  //cout << "NOVA: " << newQtd << endl;
+  
+  locais[0].getInsumo()[id]->setQuantidade(newQtd); 
 
+  locais[dest].pushInsumo(_insumo);
 }
