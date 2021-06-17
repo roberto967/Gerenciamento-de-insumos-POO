@@ -10,11 +10,10 @@ class EPI : public Insumos
     std::string descricao;
   public:
     EPI();
-    EPI(std::string _nome, int _quantidade, std::string _valorUnitario, std::string _dtVencimento, std::string _nomeFabricante, int _tipoInsumo, int codLote);
+    EPI(std::string _nome, int _quantidade, std::string _valorUnitario, std::string _dtVencimento, std::string _nomeFabricante, int _tipoInsumo, int codLote, std::string _descricao, std::string _tipo);
     ~EPI();
 
     //metodo cadastro e exibição sobrescrito(campos especificos) 
-    void cadastroInsumo();
     void getCamposEspecificos();
 
     //sets

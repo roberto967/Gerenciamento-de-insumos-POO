@@ -6,8 +6,10 @@ EPI::EPI()
 {
 }
 
-EPI::EPI(string _nome, int _quantidade, string _valorUnitario, string _dtVencimento, string _nomeFabricante, int _tipoInsumo, int _codLote) : Insumos(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote)
+EPI::EPI(string _nome, int _quantidade, string _valorUnitario, string _dtVencimento, string _nomeFabricante, int _tipoInsumo, int _codLote, string _descricao, string _tipo) : Insumos(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote)
 {
+	descricao = _descricao;
+	tipo = _tipo; 
 }
 
 EPI::~EPI()
@@ -15,14 +17,6 @@ EPI::~EPI()
 }
 
 //metodo cadastro e exibição sobrescrito(campos especificos)
-void EPI::cadastroInsumo()
-{
-  cout << "TIPO: ";
-  getline(cin, tipo);
-
-  cout << "DESCRIÇÃO: ";
-  getline(cin, descricao);
-}
 
 void EPI::getCamposEspecificos()
 {

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <locale>
 #include <string>
-
+#include <iostream>
 using namespace std;
 
 Controler::Controler()
@@ -66,7 +66,7 @@ void Controler::cadastraInsumosMS()
       // Garante que a escolha do usuario esteja nas possibilidades propostas.
 
       if(_tipoInsumo < 0 || _tipoInsumo > 3){
-        cout << "Opção invalida, tente novamente!" << endl;
+        cout << "Opção inválida, tente novamente!" << endl;
       }
 
     }while (_tipoInsumo < 0 || _tipoInsumo > 3);
@@ -82,6 +82,9 @@ void Controler::cadastraInsumosMS()
     string _dtVencimento;
     string _nomeFabricante;
     int _codLote;
+		ofstream Vcontrole;
+		ofstream Mcontrole;
+		ofstream EPIcontrole;
 
     //vai cadastrar os campos comuns a todos os insumos.
     cout << "NOME: ";
@@ -110,7 +113,7 @@ void Controler::cadastraInsumosMS()
         if (_codLote == locais[0].getInsumo()[i]->getCodLote())
         {
           verificador = true;
-          cout << "CODIGO DE LOTE JÁ CADASTRADO, TENTE NOVAMENTE." << endl;
+          cout << "Código do lote já cadastrado, tente novamente." << endl;
           break;
         }
         if(i == locais[0].getInsumo().size()-1)
@@ -119,12 +122,63 @@ void Controler::cadastraInsumosMS()
         }
       }
     }while(verificador == true);
-  	
-    //cadastra de fato o insumo
-    locais[0].pushInsumo(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote);
-    
+
+		//tipos especificos
+		//vacina:
+			string _tipo;
+			int _quantDoses;
+			string _intervalo;
+		//Medicamentos:
+			string _dosagem;
+			string _administracao;
+			string _disponibilizacao;
+		//EPI
+			string _descricao;
+
+		if(_tipoInsumo == 1)
+		{
+				cin.ignore();
+				cout << "TIPO: ";
+				getline(cin, _tipo);
+
+				cout << "QUANT DOSES: ";
+				cin >> _quantDoses;
+				cin.ignore();
+
+				cout << "INTERVALO ENTRE DOSES: ";
+				getline(cin, _intervalo);
+
+				locais[0].pushInsumo(make_shared<Vacina>(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote, _tipo, _quantDoses, _intervalo));
+		}
+
+		if(_tipoInsumo == 2)
+		{
+			cin.ignore();
+			cout << "DOSAGEM: ";
+			getline(cin, _dosagem);
+
+			cout << "ADMINISTRAÇÃO: ";
+			getline(cin, _administracao);
+
+			cout << "DISPONIBILIZAÇÃO: ";
+			getline(cin, _disponibilizacao);
+
+			locais[0].pushInsumo(make_shared<Medicamento>(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote, _dosagem, _administracao, _disponibilizacao));
+		}
+
+		if(_tipoInsumo == 3){
+			cin.ignore();
+			cout << "TIPO: ";
+			getline(cin, _tipo);
+
+			cout << "DESCRIÇÃO: ";
+			getline(cin, _descricao);
+					
+			locais[0].pushInsumo(make_shared<EPI>(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote, _descricao, _tipo));
+		}
+
     system("clear");
-    cout << "Cadastro realizado com sucesso!" << endl;
+    cout << "Cadastro realizado com sucesso! " << endl;
     
   }while(_tipoInsumo !=0);
 } 
@@ -132,11 +186,12 @@ void Controler::cadastraInsumosMS()
 void Controler::consultaInsumos(Local loc)
 { 
   locale loca;
+  int index = 1;
  
   cout << "=====================================================" << endl;
   cout << "               Ministério da Saúde (MS)              " << endl;
   cout << "       Gerenciamento e Distribuição de Insumos       " << endl;
-  cout << "     CONSULTA DE INSUMOS - " << loc.getNome() << endl;
+  cout << "               CONSULTA DE INSUMOS - " << loc.getNome() << endl;
   cout << "=====================================================" << endl; 
 
   if(consultaInsumos(loc, 1).size()){
@@ -149,11 +204,13 @@ void Controler::consultaInsumos(Local loc)
       {
         cout << toupper(consultaInsumos(loc, 1)[i]->getNome()[j], loca);
       }
-      cout << "                    | INDICE: " << i << endl;
-      cout << "VALOR UNITÁRIO: " << consultaInsumos(loc, 1)[i]->getValorUnitario() << endl;
+      cout << "                    | ÍNDICE: " << index << endl;
+      cout << "VALOR UNITÁRIO: R$ " << consultaInsumos(loc, 1)[i]->getValorUnitario() << endl;
       cout << "QUANTIDADE: " << consultaInsumos(loc, 1)[i]->getQuantidade() << endl;
       cout << "VALIDADE: " << consultaInsumos(loc, 1)[i]->getDtVencimento() << endl;
       cout << "FABRICANTE: " << consultaInsumos(loc, 1)[i]->getNomeFabricante() << endl;
+      cout << "=====================================================" << endl;
+      index++;
     }
   }
 
@@ -167,11 +224,13 @@ void Controler::consultaInsumos(Local loc)
       {
         cout << toupper(consultaInsumos(loc, 2)[i]->getNome()[j], loca);
       }
-      cout << "                    | INDICE: " << i << endl;
+      cout << "                    | ÍNDICE: " << index << endl;
       cout << "VALOR UNITÁRIO: " << consultaInsumos(loc, 2)[i]->getValorUnitario() << endl;
       cout << "QUANTIDADE: " << consultaInsumos(loc, 2)[i]->getQuantidade() << endl;
       cout << "VALIDADE: " << consultaInsumos(loc, 2)[i]->getDtVencimento() << endl;
       cout << "FABRICANTE: " << consultaInsumos(loc, 2)[i]->getNomeFabricante() << endl;
+      cout << "=====================================================" << endl;
+      index++;
     }
   }
 
@@ -185,11 +244,13 @@ void Controler::consultaInsumos(Local loc)
       {
         cout << toupper(consultaInsumos(loc, 3)[i]->getNome()[j], loca);
       }
-      cout << "                    | INDICE: " << i << endl;
+      cout << "                    | INDICE: " << index << endl;
       cout << "VALOR UNITÁRIO: " << consultaInsumos(loc, 3)[i]->getValorUnitario() << endl;
       cout << "QUANTIDADE: " << consultaInsumos(loc, 3)[i]->getQuantidade() << endl;
       cout << "VALIDADE: " << consultaInsumos(loc, 3)[i]->getDtVencimento() << endl;
       cout << "FABRICANTE: " << consultaInsumos(loc, 3)[i]->getNomeFabricante() << endl;
+      cout << "=====================================================" << endl;
+      index++;
     }
   }
 }
@@ -197,8 +258,8 @@ void Controler::consultaInsumos(Local loc)
 void Controler::consultaInsumosDescricao(Local loc)
 {
   locale loca;
-  int y;// saida do do{...}while
-  do{
+	int flag;
+
   cout << "=====================================================" << endl;
   cout << "               Ministério da Saúde (MS)              " << endl;
   cout << "       Gerenciamento e Distribuição de Insumos       " << endl;
@@ -221,9 +282,10 @@ void Controler::consultaInsumosDescricao(Local loc)
       cout << "VALIDADE: " << consultaInsumos(loc, 1)[i]->getDtVencimento() << endl;
       cout << "FABRICANTE: " << consultaInsumos(loc, 1)[i]->getNomeFabricante() << endl;
       consultaInsumos(loc, 1)[i]->getCamposEspecificos();
+      cout << "=====================================================" << endl;
     }
   }
-
+    
   if(consultaInsumos(loc, 2).size()){
     Menu::exibeCabecalhoSimples(2);
     for(int i = 0; i< consultaInsumos(loc, 2).size(); i++)
@@ -240,6 +302,7 @@ void Controler::consultaInsumosDescricao(Local loc)
       cout << "VALIDADE: " << consultaInsumos(loc, 2)[i]->getDtVencimento() << endl;
       cout << "FABRICANTE: " << consultaInsumos(loc, 2)[i]->getNomeFabricante() << endl;
       consultaInsumos(loc, 2)[i]->getCamposEspecificos();
+      cout << "=====================================================" << endl;
     }
   }
 
@@ -259,13 +322,11 @@ void Controler::consultaInsumosDescricao(Local loc)
       cout << "VALIDADE: " << consultaInsumos(loc, 3)[i]->getDtVencimento() << endl;
       cout << "FABRICANTE: " << consultaInsumos(loc, 3)[i]->getNomeFabricante() << endl;
       consultaInsumos(loc, 3)[i]->getCamposEspecificos();
+      cout << "=====================================================" << endl;
     }
   }
-  Menu::exibeRodape();
-   cin >>y;
-   if (y<0 ||y>1)
-   cout<< "Opção invalida, tente novamente!"<< endl;
-	} while (y!=0);
+	cout << "Pressione qualquer tecla para continuar..." << endl;
+	flag = getc(stdin);
 }
 
 vector<shared_ptr<Insumos>> Controler::consultaInsumos(Local loc, int tipoInsumo)
@@ -288,30 +349,57 @@ void Controler::distribuirInsumo(int dest, shared_ptr<Insumos> insumo)
 
   shared_ptr<Insumos> _insumo = make_shared<Insumos>(*insumo); //faz uma copia do insumo para editar
   
-  for(int i = 0; i < locais[0].getInsumo().size(); i++)
+  for(int i = 0; i < locais[0].getInsumo().size(); i++)//guarda a referencia(no vetor do ms) de qual insumo está sendo transferido
   {
     if(locais[0].getInsumo()[i] == insumo)
     {
       id = i;
-      cout << "SAO IGUAIS!!" << endl;
+      //cout << "SAO IGUAIS!!" << endl;
       break;
     }
   }
 
+  do //evita definir uma quantidade menor que 0 ou maior do que o disponivel.
+  {
+    cout << "Insira a quantidade a ser transferida: ";
+    cin.ignore();
+    cin >> qtd;
+  }while (qtd <= 0 || qtd > _insumo->getQuantidade());
   
-  cout << "Insira a quantidade a ser transferida: ";
-  cin.ignore();
-  cin >> qtd;
   _insumo->setQuantidade(qtd);
   
   qtdAtual = locais[0].getInsumo()[id]->getQuantidade();
 
-  //cout << "ATUAL: " << locais[0].getInsumo()[id]->getQuantidade() << endl;
-  newQtd = qtdAtual-qtd;
-
-  //cout << "NOVA: " << newQtd << endl;
+  newQtd = qtdAtual-qtd; //define a nova quantidade que vai ficar no array da ms naquele insumo
   
-  locais[0].getInsumo()[id]->setQuantidade(newQtd); 
+  if(newQtd == 0)//se a quantidade daquele lote zerar ele deleta o lote do array da ms.
+  {
+    locais[0].deleteInsumo(id);
+  }else
+  {
+    locais[0].getInsumo()[id]->setQuantidade(newQtd);
+  }
 
-  locais[dest].pushInsumo(_insumo);
+  if (locais[dest].getInsumo().size() > 0)
+  {
+    for(int i = 0; i < locais[dest].getInsumo().size(); i++)
+    { 
+      if(locais[dest].getInsumo()[i]->getCodLote() == _insumo->getCodLote())
+      {
+        qtdAtual = locais[dest].getInsumo()[i]->getQuantidade();
+        newQtd = qtdAtual + qtd;
+        locais[dest].getInsumo()[i]->setQuantidade(newQtd);
+        break;
+      }
+      if (i == locais[dest].getInsumo().size()-1)
+      {
+        locais[dest].pushInsumo(_insumo);
+      }
+    }
+  }
+  else
+  {
+    locais[dest].pushInsumo(_insumo);
+  }
+
 }

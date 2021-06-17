@@ -11,11 +11,10 @@ class Medicamento : public Insumos
     std::string disponibilizacao;
   public:
     Medicamento();
-    Medicamento(std::string _nome, int _quantidade, std:: string _valorUnitario, std::string _dtVencimento, std::string _nomeFabricante, int _tipoInsumo, int _codLote);
+    Medicamento(std::string _nome, int _quantidade, std:: string _valorUnitario, std::string _dtVencimento, std::string _nomeFabricante, int _tipoInsumo, int _codLote, std::string _dosagem, std::string _administracao, std::string _disponibilizacao);
     ~Medicamento();
     
     //metodo cadastro e exibição sobrescrito(campos especificos)
-    void cadastroInsumo();
     void getCamposEspecificos();
 
     //sets

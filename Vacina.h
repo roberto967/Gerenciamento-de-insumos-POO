@@ -11,11 +11,10 @@ class Vacina : public Insumos
     std::string intervalo;
   public:
     Vacina();
-    Vacina(std::string _nome, int _quantidade, std::string _valorUnitario, std::string _dtVencimento, std::string _nomeFabricante, int _tipoInsumo, int _codLote);
+    Vacina(std::string _nome, int _quantidade, std::string _valorUnitario, std::string _dtVencimento, std::string _nomeFabricante, int _tipoInsumo, int _codLote, std::string _tipo, int _quantDoses, std::string _intervalo);
     ~Vacina();
 
     //metodo cadastro e exibição sobrescrito(campos especificos)
-    void cadastroInsumo();
     void getCamposEspecificos();
 
     //sets

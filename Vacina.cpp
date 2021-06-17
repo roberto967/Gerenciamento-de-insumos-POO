@@ -6,27 +6,15 @@ Vacina::Vacina()
 {
 }
 
-Vacina::Vacina(string _nome, int _quantidade, string _valorUnitario, string _dtVencimento, string _nomeFabricante, int _tipoInsumo, int _codLote) : Insumos(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote)
+Vacina::Vacina(string _nome, int _quantidade, string _valorUnitario, string _dtVencimento, string _nomeFabricante, int _tipoInsumo, int _codLote, string _tipo, int _quantDoses, string _intervalo) : Insumos(_nome, _quantidade, _valorUnitario, _dtVencimento, _nomeFabricante, _tipoInsumo, _codLote)
 { 
+	tipo = _tipo;
   quantDoses = 0;
+	intervalo = _intervalo;
 }
 
 Vacina::~Vacina()
 {
-}
-
-//metodo cadastro e exibição sobrescrito(campos especificos)
-void Vacina::cadastroInsumo()
-{
-  cout << "TIPO: ";
-  getline(cin, tipo);
-
-  cout << "QUANT DOSES: ";
-  cin >> quantDoses;
-  cin.ignore();
-
-  cout << "INTERVALO ENTRE DOSES: ";
-  getline(cin, intervalo);
 }
 
 void Vacina::getCamposEspecificos()

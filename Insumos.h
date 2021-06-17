@@ -4,11 +4,11 @@
 #include <iostream>
 #include <string>
 #include <memory>
-
+#include <fstream>
 class Insumos
 {
   private:
-
+  
   protected:
     std::string nome;
     int quantidade;
@@ -23,7 +23,6 @@ class Insumos
     ~Insumos();
 
     //metodo virtual para ser sobrescrito pela subclasse
-    virtual void cadastroInsumo();
     virtual void getCamposEspecificos();
 
     //sets

@@ -1,5 +1,5 @@
 #include "Insumos.h"
-
+#include <fstream>
 using namespace std;
 
 Insumos::Insumos()
@@ -23,8 +23,6 @@ Insumos::~Insumos()
 }
 
 //Metodo de cadastro para ser sobrescrito
-void Insumos::cadastroInsumo(){}
-
 
 void Insumos::getCamposEspecificos(){};
 
@@ -60,6 +58,8 @@ void Insumos::setTipoInsumo(int _tipoInsumo)
 }
 
 //gets
+
+
 string Insumos::getNome()
 {
   return nome;

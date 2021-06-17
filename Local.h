@@ -1,7 +1,7 @@
 #ifndef LOCAL_H
 #define LOCAL_H
-
-#include "Insumos.h"
+#include <fstream>
+#include"Insumos.h"
 #include "Vacina.h"
 #include "Medicamento.h"
 #include "EPI.h"
@@ -25,9 +25,9 @@ class Local
     int getTipo();
     
     //da o push de um insumo no array
-    void pushInsumo(std::string _nome, int _quantidade, std:: string _valorUnitario, std::string _dtVencimento, std::string _nomeFabricante, int _tipoInsumo, int _codLote);
     void pushInsumo(std::shared_ptr<Insumos> _insumo);
     std::vector<std::shared_ptr<Insumos>> getInsumo();
+    void deleteInsumo(int index);
 };
 
 #endif
