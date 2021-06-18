@@ -52,11 +52,23 @@ int main() {
 				case 1:
 					t->consultaInsumos(t->getLocais(opcaoLoc)); // faz a consulta dos insumos sem descricao
 					Menu::exibeRodape();
+
+					cout << "Pressione qualquer tecla para continuar..." << endl;
+					getchar();
+  				getchar();
+					system("clear");
+
 					break;
 
 				case 2:
 					t->consultaInsumosDescricao(t->getLocais(opcaoLoc)); // faz a consulta dos insumos com descricao/
 					Menu::exibeRodape();
+
+					cout << "Pressione qualquer tecla para continuar..." << endl;
+					getchar();
+  				getchar();
+					system("clear");
+
 					break;
 
 				default:
@@ -112,7 +124,6 @@ int main() {
 			break; // break do primeiro switch case// case 3;
 		default:
 			cout << "Opção inválida, tente novamente!" << endl;
-			// sleep(3);
 			break;
 		}
 	} while (opcao != 0);

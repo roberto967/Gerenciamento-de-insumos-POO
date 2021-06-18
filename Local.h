@@ -18,16 +18,19 @@ class Local
     Local();
     ~Local();
 
+    //sets
     void setNome(std::string _nome);
     void setTipo(int _tipo);
     void setNomeAndTipo(std::string _nome, int _tipo);
+    std::vector<std::shared_ptr<Insumos>> getInsumo();
+
+    //gets
     std::string getNome();
     int getTipo();
     
-    //da o push de um insumo no array
-    void pushInsumo(std::shared_ptr<Insumos> _insumo);
-    std::vector<std::shared_ptr<Insumos>> getInsumo();
-    void deleteInsumo(int index);
+    void pushInsumo(std::shared_ptr<Insumos> _insumo); // empurra no vetor Insumo o insumo recebido como parametro;
+
+    void deleteInsumo(int index);// deleta o insumo armazenado na posição recebida como parametro no vetor Insumo
 };
 
 #endif

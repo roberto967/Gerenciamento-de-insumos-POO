@@ -22,8 +22,7 @@ class Insumos
     Insumos(std::string _nome, int _quantidade, std::string _valorUnitario, std::string _dtVencimento, std::string _nomeFabricante, int _tipoInsumo, int _codLote);
     ~Insumos();
 
-    //metodo virtual para ser sobrescrito pela subclasse
-    virtual void getCamposEspecificos();
+    virtual void getCamposEspecificos();  //retorna os campoes especifios de forma pronta para exibir na tela para o usuario.
 
     //sets
     void setNome(std::string _nome);

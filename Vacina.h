@@ -14,8 +14,7 @@ class Vacina : public Insumos
     Vacina(std::string _nome, int _quantidade, std::string _valorUnitario, std::string _dtVencimento, std::string _nomeFabricante, int _tipoInsumo, int _codLote, std::string _tipo, int _quantDoses, std::string _intervalo);
     ~Vacina();
 
-    //metodo cadastro e exibição sobrescrito(campos especificos)
-    void getCamposEspecificos();
+    void getCamposEspecificos(); //retorna os campoes especifios de forma pronta para exibir na tela para o usuario.
 
     //sets
     void setTipo(std::string _tipo);

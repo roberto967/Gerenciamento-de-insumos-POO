@@ -328,7 +328,7 @@ void Controler::consultaInsumosDescricao(Local loc)
 
 vector<shared_ptr<Insumos>> Controler::consultaInsumos(Local loc, int tipoInsumo)
 {
-  vector<shared_ptr<Insumos>> vetorInsumoEspe;
+  vector<shared_ptr<Insumos>> vetorInsumoEspe; // vai armazenar o vetor de insumos do tipo desejado do local recebido como parametro
 
   for (int i = 0; i < loc.getInsumo().size(); i++)
   {
@@ -377,6 +377,7 @@ void Controler::distribuirInsumo(int dest, shared_ptr<Insumos> insumo)
     locais[0].getInsumo()[id]->setQuantidade(newQtd);
   }
 
+  //verifica se o lote do insumo distribuído já existe no estado, caso exista ele só altera a quantidade, caso não exista ele cria com a quantidade que o usuario deseja transferir
   if (locais[dest].getInsumo().size() > 0)
   {
     for(int i = 0; i < locais[dest].getInsumo().size(); i++)
