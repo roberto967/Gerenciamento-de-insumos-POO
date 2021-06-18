@@ -11,11 +11,6 @@ Menu::~Menu()
 {
 }
 
-void Menu::exibeMenu2()
-{
-
-}
-
 //tá pronto
 void Menu::exibeMenuPrincipal()
 {
@@ -70,6 +65,7 @@ void Menu::exibeMenuCadastro()
   cout << "=====================================================" << endl;
   cout << "Insira uma opção: ";
 }
+
 //pronto
 void Menu::exibeCabecalhoSimples(int tipoInsumo)
 { 
@@ -132,6 +128,7 @@ void Menu::exibeMenuConsultaEstoque()
   cout << "=====================================================" << endl;
   cout << "Insira uma opção: ";
 }
+
 void Menu::exibeRodape()
 {
   cout << "=====================================================" << endl;

@@ -17,7 +17,6 @@ Medicamento::~Medicamento()
 {
 }
 
-//metodo cadastro e exibição sobrescrito(campos especificos)
 
 void Medicamento::getCamposEspecificos()
 {

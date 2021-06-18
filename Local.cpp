@@ -39,7 +39,6 @@ int Local::getTipo()
 void Local::pushInsumo(shared_ptr<Insumos> _insumo)
 {
   Insumo.emplace_back(make_shared<Insumos>(*_insumo));
-  //Insumo.emplace_back(_insumo);
 }
 
 vector<shared_ptr<Insumos>> Local::getInsumo()

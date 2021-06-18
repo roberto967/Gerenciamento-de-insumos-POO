@@ -7,7 +7,7 @@ using namespace std;
 
 Controler::Controler()
 {
-  locais[0].setNomeAndTipo("Ministerio da Saúde",01);
+  locais[0].setNomeAndTipo("Ministerio da Saúde", 1);
   locais[1].setNomeAndTipo("RO", 11);
   locais[2].setNomeAndTipo("AC", 12);
   locais[3].setNomeAndTipo("AM", 13);
@@ -258,7 +258,6 @@ void Controler::consultaInsumos(Local loc)
 void Controler::consultaInsumosDescricao(Local loc)
 {
   locale loca;
-	int flag;
 
   cout << "=====================================================" << endl;
   cout << "               Ministério da Saúde (MS)              " << endl;
@@ -325,8 +324,6 @@ void Controler::consultaInsumosDescricao(Local loc)
       cout << "=====================================================" << endl;
     }
   }
-	cout << "Pressione qualquer tecla para continuar..." << endl;
-	flag = getc(stdin);
 }
 
 vector<shared_ptr<Insumos>> Controler::consultaInsumos(Local loc, int tipoInsumo)

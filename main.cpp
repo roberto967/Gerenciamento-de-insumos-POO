@@ -1,35 +1,10 @@
-
-/* Um método que cadastra insumos no estoque do MS (vacinas, medicamentos e
-EPIs); 99.9% concluido
-
-• Um método que consulta os insumos disponíveis no estoque do MS ou de algum
-Estado; 70% concluido
-
-• Um método que consulta a descrição dos insumos disponíveis no estoque do MS ou
-de algum estado (incluindo informações sobre os seus atributos); 70% concluido
-
-• Um método que retorna todos os insumos disponíveis no estoque do MS ou de
-algum estado, por tipo (vacina, medicamentos e EPIs); ~> nao pedia isso na
-descrição do projeto. mas a gente pode tentar quando terminar esse.
-
-• Um método que entrega/distribui um determinado tipo de insumo para um
-determinado estado (nesse caso, o estado deve ser passado como parâmetro da
-função, bem como o tipo de insumo). Você deve também debitar aquele insumo do
-estoque do MS e creditá-lo no estoque daquele estado; -> a definir, vai ser
-baseado no do projeto passado
-*/
-
 #include <iostream>
-//#include <unistd.h>
 
 #include "Controler.h"
 #include "Local.h"
 #include "Menu.h"
 
 using namespace std;
-
-// acho que ia ficar muito bagunçado com a questao dos codigos do ibge, assim da
-// uma simplificada e evitou aquele bug do nas consultas
 
 int main() {
 	int opcao, opcaoCons, opcaoLoc, opTrans;
