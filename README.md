@@ -12,4 +12,4 @@
 
 &nbsp;&nbsp;&nbsp;O sistema gerencia informações sobre o estoque atual do MS desses insumos, além de gerenciar informações sobre o que já foi distribuído de insumos para os estados.
 
-<span style="display:block;text-align:center">![Class Diagram](./img/class-diagram.jpg)
+<span style="display:block;text-align:center">![Class Diagram](./img/class-diagram.jpg)</span>
