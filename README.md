@@ -13,5 +13,5 @@
 &nbsp;&nbsp;&nbsp;O sistema gerencia informações sobre o estoque atual do MS desses insumos, além de gerenciar informações sobre o que já foi distribuído de insumos para os estados.
 
 <p align="center">
-![Class Diagram](./img/class-diagram.jpg)
+<img title = "Class diagram" alt= "Class diagram" src = "./img/class-diagram.jpg" />
 </p>
