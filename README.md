@@ -11,3 +11,5 @@
     • EPI: Contém informações sobre o tipo de EPIs (ex: máscara, face shield, luvas, óculos de  proteção, toucas,  capotes,  etc.), e  um  campo  de  descrição  que  contém  mais informações  sobre  a  EPI  (ex:  informações  mais  detalhadas se  a  máscara  é  do  tipo NF95,  PFF2,  se  for  uma  máscara  de  tecido,  informações  sobre  quantas  camadas  a máscara tem, além de outras informações associadas a outros tipos de materiais);
 
 &nbsp;&nbsp;&nbsp;O sistema gerencia informações sobre o estoque atual do MS desses insumos, além de gerenciar informações sobre o que já foi distribuído de insumos para os estados.
+
+![Class Diagram](.)
